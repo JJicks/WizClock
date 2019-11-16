@@ -44,8 +44,6 @@ public class ProfileFragment extends Fragment {
         else
             Glide.with(this).load(user.getPhotoUrl()).apply(RequestOptions.circleCropTransform()).into(imageViewHeaderProfile);
 
-        Toast.makeText(getContext(), user.getProviderId(), Toast.LENGTH_SHORT).show();
-
         return root;
     }
 }
