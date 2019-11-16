@@ -1,9 +1,8 @@
-package com.jjickjjicks.wizclock;
+package com.jjickjjicks.wizclock.ui.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,10 +17,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.jjickjjicks.wizclock.BottomNavigationBehavior;
+import com.jjickjjicks.wizclock.DarkModePrefManager;
+import com.jjickjjicks.wizclock.ui.fragment.MainFragment;
+import com.jjickjjicks.wizclock.ui.fragment.ProfileFragment;
+import com.jjickjjicks.wizclock.R;
+import com.jjickjjicks.wizclock.ui.fragment.SearchFragment;
+import com.jjickjjicks.wizclock.ui.fragment.SettingsFragment;
+import com.jjickjjicks.wizclock.ui.fragment.TimerFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 //    private FirebaseDatabase database = FirebaseDatabase.getInstance();

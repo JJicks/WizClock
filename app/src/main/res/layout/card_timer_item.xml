@@ -16,7 +16,7 @@
         android:padding="10dp">
 
         <ImageView
-            android:id="@+id/salesImageView"
+            android:id="@+id/typeIconView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_cash" />
@@ -26,18 +26,21 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@id/salesImageView"
+            android:layout_toRightOf="@id/typeIconView"
             android:orientation="vertical">
 
             <TextView
-                style="@style/reportContentText"
-                android:text="Cash"
-                android:textColor="#25C0DE" />
+                android:id="@+id/tvTimerTitle"
+                style="@style/viewParent.headerText"
+                android:text="Item Name"
+                android:textSize="21sp" />
 
             <TextView
-                style="@style/viewParent.headerText"
-                android:text="$1000.22"
-                android:textSize="21sp" />
+                android:id="@+id/tvTimerAuthor"
+                style="@style/reportContentText"
+                android:text="userName"
+                android:textColor="#25C0DE" />
+
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -1,4 +1,4 @@
-package com.jjickjjicks.wizclock;
+package com.jjickjjicks.wizclock.data.item;
 
 import java.util.Locale;
 

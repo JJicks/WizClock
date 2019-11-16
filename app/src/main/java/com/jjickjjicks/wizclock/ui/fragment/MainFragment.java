@@ -1,4 +1,4 @@
-package com.jjickjjicks.wizclock;
+package com.jjickjjicks.wizclock.ui.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.jjickjjicks.wizclock.R;
 
 public class MainFragment extends Fragment {
     private TextView tvUserName;

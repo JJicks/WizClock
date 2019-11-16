@@ -1,4 +1,4 @@
-package com.jjickjjicks.wizclock;
+package com.jjickjjicks.wizclock.data.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.jjickjjicks.wizclock.R;
+import com.jjickjjicks.wizclock.data.item.TimerData;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigationMyCourses"
-        android:icon="@drawable/ic_effort"
+        android:icon="@drawable/ic_alarm"
         android:title="Timer" />
     <item
         android:id="@+id/navigationSearch"
@@ -18,6 +18,6 @@
         android:title="Profile" />
     <item
         android:id="@+id/navigationMenu"
-        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:icon="@android:drawable/ic_settings"
         android:title="Settings" />
 </menu>
