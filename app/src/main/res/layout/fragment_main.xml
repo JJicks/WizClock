@@ -145,11 +145,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <include layout="@layout/card_popular_courses" />
+                    <include layout="@layout/card_popular_timers" />
 
-                    <include layout="@layout/card_popular_courses" />
+                    <include layout="@layout/card_popular_timers" />
 
-                    <include layout="@layout/card_popular_courses" />
+                    <include layout="@layout/card_popular_timers" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -185,11 +185,11 @@
                     android:layout_marginTop="20dp"
                     android:orientation="horizontal">
 
-                    <include layout="@layout/card_frutorials" />
+                    <include layout="@layout/card_popular_users" />
 
-                    <include layout="@layout/card_frutorials" />
+                    <include layout="@layout/card_popular_users" />
 
-                    <include layout="@layout/card_frutorials" />
+                    <include layout="@layout/card_popular_users" />
                 </LinearLayout>
             </HorizontalScrollView>
 

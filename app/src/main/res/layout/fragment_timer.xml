@@ -4,129 +4,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_view_countdown"
-        android:layout_width="wrap_content"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:text="00:00:00"
-        android:textColor="@android:color/black"
-        android:textSize="50sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/timePicker" />
-
-    <RelativeLayout
-        android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <NumberPicker
-            android:id="@+id/hourPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scrollbarSize="4dp"
-            android:theme="@style/numberPickerCustomSize" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/hourPicker"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text=":"
-            android:textColor="@android:color/black"
-            android:textSize="60sp" />
+            <RelativeLayout
+                android:id="@+id/headerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/reports_header_bk"
+                android:paddingLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="20dp">
 
-        <NumberPicker
-            android:id="@+id/minPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/textView"
-            android:scrollbarSize="4dp"
-            android:theme="@style/numberPickerCustomSize" />
+                <TextView
+                    style="@style/profileStyledBackButton"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="새로운 시간\n추가" />
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/minPicker"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text=":"
-            android:textColor="@android:color/black"
-            android:textSize="60sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/headerLayout"
+                android:orientation="vertical">
 
-        <NumberPicker
-            android:id="@+id/secPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/textView2"
-            android:scrollbarSize="4dp"
-            android:theme="@style/numberPickerCustomSize" />
-    </RelativeLayout>
+                <include layout="@layout/card_timers" />
 
-    <LinearLayout
-        android:id="@+id/button_Layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:orientation="horizontal"
-        android:weightSum="7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+                <include layout="@layout/card_timers" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"></LinearLayout>
+                <include layout="@layout/card_timers" />
 
-        <Button
-            android:id="@+id/button_start_pause"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:background="@drawable/button_shape_blue"
-            android:text="@string/start"
-            android:textColor="@android:color/white" />
+                <include layout="@layout/card_timers" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"></LinearLayout>
+                <include layout="@layout/card_timers" />
 
-        <Button
-            android:id="@+id/button_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:background="@drawable/button_shape_red"
-            android:text="@string/reset"
-            android:textColor="@android:color/white"
-            android:visibility="invisible" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal"></LinearLayout>
-    </LinearLayout>
-
+                <include layout="@layout/card_timers" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -25,6 +28,7 @@ public class SettingsFragment extends Fragment {
     private FirebaseUser user;
     private GoogleSignInClient mGoogleSignInClient;
     private TextView usernameTextView, useremailTextView, btnLogout;
+    private ImageView profileCircleImageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class SettingsFragment extends Fragment {
 
         usernameTextView = root.findViewById(R.id.usernameTextView);
         useremailTextView = root.findViewById(R.id.useremailTextView);
+        profileCircleImageView = root.findViewById(R.id.profileCircleImageView);
         btnLogout = root.findViewById(R.id.btnLogout);
 
         // Firebase 로드
@@ -48,6 +53,10 @@ public class SettingsFragment extends Fragment {
 
         usernameTextView.setText(user.getDisplayName());
         useremailTextView.setText(user.getEmail());
+        if (user.getPhotoUrl().equals(null))
+            Glide.with(this).load(R.drawable.blank_profile_image).apply(RequestOptions.circleCropTransform()).into(profileCircleImageView);
+        else
+            Glide.with(this).load(user.getPhotoUrl()).apply(RequestOptions.circleCropTransform()).into(profileCircleImageView);
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
