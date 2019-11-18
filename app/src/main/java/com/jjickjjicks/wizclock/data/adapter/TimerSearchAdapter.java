@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,30 +14,29 @@ import com.jjickjjicks.wizclock.data.item.TimerItem;
 
 import java.util.ArrayList;
 
-public class TimerItemAdapter extends RecyclerView.Adapter<TimerItemAdapter.ViewHolder> {
+public class TimerSearchAdapter extends RecyclerView.Adapter<TimerSearchAdapter.ViewHolder> {
     private ArrayList<TimerItem> list = null;
 
-    public TimerItemAdapter(ArrayList<TimerItem> list) {
+    public TimerSearchAdapter(ArrayList<TimerItem> list) {
         this.list = list;
     }
 
     @NonNull
     @Override
-    public TimerItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TimerSearchAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.card_timer_item, parent, false);
-        TimerItemAdapter.ViewHolder vh = new TimerItemAdapter.ViewHolder(view);
+        View view = inflater.inflate(R.layout.card_search_item, parent, false);
+        TimerSearchAdapter.ViewHolder vh = new TimerSearchAdapter.ViewHolder(view);
 
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageResource(list.get(position).getTypeIcon());
         holder.itemName.setText(list.get(position).getTitle());
-        holder.itemAuthor.setText(list.get(position).getAuthorName());
+        holder.itemDescription.setText(list.get(position).getDescribe());
     }
 
     @Override
@@ -47,15 +45,13 @@ public class TimerItemAdapter extends RecyclerView.Adapter<TimerItemAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView itemName, itemAuthor;
-        ImageView imageView;
+        TextView itemName, itemDescription;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.typeIconView);
             itemName = itemView.findViewById(R.id.tvTimerTitle);
-            itemAuthor = itemView.findViewById(R.id.tvTimerAuthor);
+            itemDescription = itemView.findViewById(R.id.tvTimerDescription);
         }
     }
 }

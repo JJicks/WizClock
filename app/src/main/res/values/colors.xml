@@ -35,4 +35,12 @@
     <color name="profileBackground">#fff</color>
     <color name="blackTextColor">#000</color>
     <color name="profileEditTextColor">#707070</color>
+
+    <!--    home designs main color-->
+    <!--    will use the same color for all card and vectors, if you want to change this color, search the color code in vector files-->
+    <color name="designMainColor">#13D3B4</color>
+    <color name="contentStatusBar">#fff</color>
+
+    <!--colors for light mode-->
+    <color name="miniDescription">#707070</color>
 </resources>

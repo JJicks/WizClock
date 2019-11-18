@@ -18,6 +18,6 @@
         android:title="Profile" />
     <item
         android:id="@+id/navigationMenu"
-        android:icon="@android:drawable/ic_settings"
+        android:icon="@drawable/ic_setting"
         android:title="Settings" />
 </menu>
