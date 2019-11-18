@@ -1,8 +1,11 @@
 package com.jjickjjicks.wizclock.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,38 +46,50 @@ public class TimerFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
             final int position = viewHolder.getAdapterPosition();
-            TimerItem timerItem = timerItmeList.get(position);
-            timerItmeList.remove(position);
+            new AlertDialog.Builder(getContext())
+                    .setTitle("삭제").setMessage("삭제하시겠습니까? 온라인 데이터는 삭제되지 않습니다.")
+                    .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            TimerItem timerItem = timerItmeList.get(position);
+                            timerItmeList.remove(position);
 
-            SharedPreferences preferences = Objects.requireNonNull(getActivity()).getSharedPreferences("TimerItem", 0);
-            SharedPreferences.Editor editor = preferences.edit();
+                            SharedPreferences preferences = Objects.requireNonNull(getActivity()).getSharedPreferences("TimerItem", 0);
+                            SharedPreferences.Editor editor = preferences.edit();
 
-            // 오프라인 저장소에서도 삭제
-            ArrayList<String> keyList = new ArrayList<>();
-            String Json = preferences.getString("key", null);
-            if (Json != null) {
-                try {
-                    JSONArray jsonArray = new JSONArray(Json);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        keyList.add(jsonArray.optString(i));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            keyList.remove(String.valueOf(timerItem.getKey()));
-            JSONArray jsonArray = new JSONArray();
-            for (String i : keyList) {
-                jsonArray.put(i);
-            }
-            String keyJson = "[]";
-            if (!keyList.isEmpty())
-                keyJson = jsonArray.toString();
-            editor.putString("key", keyJson);
-            editor.remove(String.valueOf(timerItem.getKey()));
-            editor.apply();
+                            // 오프라인 저장소에서도 삭제
+                            ArrayList<String> keyList = new ArrayList<>();
+                            String Json = preferences.getString("key", null);
+                            if (Json != null) {
+                                try {
+                                    JSONArray jsonArray = new JSONArray(Json);
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        keyList.add(jsonArray.optString(i));
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            keyList.remove(String.valueOf(timerItem.getKey()));
+                            JSONArray jsonArray = new JSONArray();
+                            for (String i : keyList) {
+                                jsonArray.put(i);
+                            }
+                            String keyJson = "[]";
+                            if (!keyList.isEmpty())
+                                keyJson = jsonArray.toString();
+                            editor.putString("key", keyJson);
+                            editor.remove(String.valueOf(timerItem.getKey()));
+                            editor.apply();
 
-            adapter.notifyItemRemoved(position);
+                            adapter.notifyItemRemoved(position);
+                        }
+                    })
+                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            updateUI();
+                        }
+                    })
+                    .show();
         }
     };
     private TextView btnTimerAdd;
@@ -82,7 +97,6 @@ public class TimerFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_timer, container, false);
 
-        initializeItem();
 
         recyclerView = root.findViewById(R.id.listViewTimeItem);
         btnTimerAdd = root.findViewById(R.id.btnTimerAdd);
@@ -91,17 +105,17 @@ public class TimerFragment extends Fragment implements View.OnClickListener {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new TimerItemAdapter(timerItmeList);
-        recyclerView.setAdapter(adapter);
 
         // setup swipe to remove item
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(deleteMotion);
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
+        updateUI();
+
         return root;
     }
 
-    private void initializeItem() {
+    private void updateUI() {
         timerItmeList = new ArrayList<>();
         timerItmeList.clear();
 
@@ -110,6 +124,7 @@ public class TimerFragment extends Fragment implements View.OnClickListener {
         ArrayList<String> keyList = new ArrayList<>();
         String Json = preferences.getString("key", null);
         if (Json != null) {
+            Log.d("JsonCheck", Json);
             try {
                 JSONArray jsonArray = new JSONArray(Json);
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -124,6 +139,8 @@ public class TimerFragment extends Fragment implements View.OnClickListener {
             String JsonLoad = preferences.getString(key, null);
             timerItmeList.add(new TimerItem(JsonLoad));
         }
+        adapter = new TimerItemAdapter(timerItmeList);
+        recyclerView.setAdapter(adapter);
     }
 
 
