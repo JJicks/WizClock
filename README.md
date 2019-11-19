@@ -22,3 +22,6 @@ https://appsnipp.com/free-android-settings-design-with-source-code-for-android/
 
 ### Firebase (Authentication + Realtime Database)
 https://firebase.google.com/?hl=ko
+
+## Downloads
+https://play.google.com/store/apps/details?id=com.jjickjjicks.wizclock
